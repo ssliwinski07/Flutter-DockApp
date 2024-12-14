@@ -7,7 +7,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const String title = "DOCK WITH DRAGGABLE ELEMENTS";
+
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green[300],
+        title: const Text(title),
+      ),
       body: Center(
         child: Dock<IconData>(
           items: const [
