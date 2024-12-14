@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
             Icons.call,
             Icons.camera,
             Icons.photo,
+            Icons.ice_skating,
           ],
           builder: (e) => DockElement(elementIcon: e),
         ),
