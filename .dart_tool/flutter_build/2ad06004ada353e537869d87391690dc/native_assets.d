@@ -1,0 +1,1 @@
+ /Users/szymonsliwinski/Desktop/dev/Flutter/Flutter-DockApp/.dart_tool/flutter_build/2ad06004ada353e537869d87391690dc/native_assets.yaml: 
