@@ -6,6 +6,7 @@ class Dock<T> extends StatefulWidget {
   const Dock({
     super.key,
     this.items = const [],
+    this.isReorderable = true,
     required this.builder,
   });
 
@@ -14,6 +15,8 @@ class Dock<T> extends StatefulWidget {
 
   /// Builder building the provided [T] item.
   final Widget Function(T) builder;
+
+  final bool isReorderable;
 
   @override
   State<Dock<T>> createState() => _DockState<T>();
@@ -38,25 +41,37 @@ class _DockState<T> extends State<Dock<T>> {
         color: Colors.black12,
       ),
       padding: const EdgeInsets.all(8.0),
-      child: ReorderableRow(
-        needsLongPressDraggable: false,
-        draggingWidgetOpacity: 0.0,
-        onReorder: (int oldIndex, int newIndex) {
-          final item = _items.removeAt(oldIndex);
-          _items.insert(newIndex, item);
-          setState(() {});
-        },
-        children: _items
-            .asMap()
-            .entries
-            .map(
-              (entry) => KeyedSubtree(
-                key: ValueKey(entry.key),
-                child: widget.builder(entry.value),
-              ),
+      child: widget.isReorderable
+          ? ReorderableRow(
+              mainAxisSize: MainAxisSize.min,
+              needsLongPressDraggable: false,
+              onReorder: (int oldIndex, int newIndex) {
+                final item = _items.removeAt(oldIndex);
+                _items.insert(newIndex, item);
+                setState(() {});
+              },
+              buildDraggableFeedback: (BuildContext context,
+                  BoxConstraints constraints, Widget child) {
+                return Material(
+                  color: Colors.transparent,
+                  child: child,
+                );
+              },
+              children: _items
+                  .asMap()
+                  .entries
+                  .map(
+                    (entry) => KeyedSubtree(
+                      key: ValueKey(entry.key),
+                      child: widget.builder(entry.value),
+                    ),
+                  )
+                  .toList(),
             )
-            .toList(),
-      ),
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: _items.map(widget.builder).toList(),
+            ),
     );
   }
 }

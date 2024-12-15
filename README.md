@@ -1,16 +1,5 @@
-# flutter_dock_app
+# ADDITIONAL INFO
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. I've used this package https://pub.dev/packages/reorderables to make icons reorderable in the dock
+2. I've added `isReorderable` property in `Dock widget` to control whether icons in dock should be reorderable or not - that makes the widget more universal.
+3. I've separeted widget `DockElement` used in the `Dock class` in property `builder` as a class. Based on that I've learnt so far, it's better to choose classes over functions when it comes to widget creation. I think it's more efficient + code is more redeable and easy to handle. 

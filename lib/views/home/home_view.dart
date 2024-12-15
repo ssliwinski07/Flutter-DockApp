@@ -7,7 +7,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String title = "DOCK WITH DRAGGABLE ELEMENTS";
+    const String title = "DOCK WITH REORDERABLE ELEMENTS";
 
     return Scaffold(
       appBar: AppBar(
@@ -25,6 +25,7 @@ class HomeView extends StatelessWidget {
             Icons.ice_skating,
           ],
           builder: (e) => DockElement(elementIcon: e),
+          isReorderable: true,
         ),
       ),
     );
